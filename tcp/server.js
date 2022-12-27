@@ -11,7 +11,6 @@ createServer(socket => {
   socket.on('close', () => console.log('close.'))
 
   setTimeout(() => {
-    fromClient = false
     socket.write('Ok.')
     socket.end()
   }, 2000)
