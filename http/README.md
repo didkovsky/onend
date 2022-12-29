@@ -1,6 +1,6 @@
 ## HTTP issue 1
 
-This issue sequence of <a href="https://github.com/didkovsky/onend/tree/main/tcp/README.md">TCP issue</a>. If we have not listener .on('data') on req object, client cannot close connection.
+This issue is a consequence of <a href="https://github.com/didkovsky/onend/tree/main/tcp/README.md">TCP issue</a>. If we have not listener .on('data') on req object, client cannot close connection.
 
 Server <a href="https://github.com/didkovsky/onend/tree/main/http/server.js">source</a>
 ``` javascript
