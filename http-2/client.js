@@ -19,5 +19,5 @@ setInterval(() => {
   req.write('Hello.')
 }, 1000)
 
-// Не завершаем запрос
+// Missing end
 // req.end()

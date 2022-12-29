@@ -3,16 +3,22 @@ const { createServer } = require('net')
 createServer(socket => {
 
   socket.on('error', console.log)
-
-  // Если нет этого обработчика, событие 'end' не сработает, когда клиент закроет сокет
-  socket.on('data', () => {})
-
   socket.on('end', () => console.log('end.'))
   socket.on('close', () => console.log('close.'))
 
+  /**
+   * If listener .on('data') not defined,
+   * client cannot close socket.
+   */
+  // socket.on('data', () => {})
+
   setTimeout(() => {
-    socket.write('Ok.')
-    socket.end()
+    // Missing end
+    // socket.end()
   }, 2000)
+
+  setInterval(() => {
+    socket.write('Data.')
+  }, 500)
 })
 .listen(444)

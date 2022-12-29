@@ -11,22 +11,20 @@ const server = createServer((req, res) => {
     res.write('Ok.')
 
     /**
-     * Не закрывает сокет,
-     * данные будут приходить пока клиент их будет отправлять
+     * Will not close a socket,
+     * data will income until client sends it.
      */
     res.end()
 
-    // Закроет сокет
+    // Will close a socket.
     // res.socket.end()
-    // или
+    // or
     // res.destroy()
   })
 })
 
 /**
- * Также, сокет не освобождается из пулла
- * при maxConnections = 1 второй клиент
- * не сможет подключиться.
+ * Also, socket will not release.
  */
 server.maxConnections = 1
 server.listen(333)

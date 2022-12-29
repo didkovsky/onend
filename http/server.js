@@ -3,19 +3,21 @@ const { createServer } = require('http')
 createServer((req, res) => {
   console.log('Request.')
   req.on('error', console.log)
+  req.on('end', () => console.log('End.'))
 
-  // Если нет этого обработчика, событие 'end' не сработает, когда клиент закроет сокет
+  /**
+   * If listener .on('data') not defined,
+   * client cannot close socket
+   */
   // req.on('data', () => {})
 
-  let fromClient = true
-  req.on('end', () => {
-    if (fromClient) console.log('End from client.')
-    else console.log('End from server.')
-  })
+  const dataInt = setInterval(() => {
+    res.write('Data.')
+  }, 1000)
 
-  setTimeout(() => {
-    fromClient = false
+  setTimeout(() => { 
+    clearInterval(dataInt)
     res.end('Ok.')
-  }, 2000)
+  }, 10000)
 })
 .listen(333)
