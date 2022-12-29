@@ -18,7 +18,7 @@ const server = createServer((req, res) => {
 
     /**
      * Will not close a socket,
-     * data will income until client sends it.
+     * data will come while client sends it.
      */
     res.end()
 
