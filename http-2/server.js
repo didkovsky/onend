@@ -3,6 +3,8 @@ const { createServer } = require('http')
 const server = createServer((req, res) => {
   console.log('Request.')
   req.on('error', console.log)
+
+  // Not emitted
   req.on('end', () => console.log('End.'))
   req.on('close', () => console.log('Close.'))
 
@@ -11,7 +13,7 @@ const server = createServer((req, res) => {
     res.write('Ok.')
 
     /**
-     * Will not close a socket,
+     * Will be ignored,
      * data will come while client sends it.
      */
     res.end()
@@ -24,7 +26,7 @@ const server = createServer((req, res) => {
 })
 
 /**
- * Also, socket will not release.
+ * Also, a socket will not release.
  */
 server.maxConnections = 1
 server.listen(333)

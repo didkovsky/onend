@@ -10,6 +10,8 @@ const options = {
 const req = request(options, response => {
   response.on('error', console.log)
   response.on('data', data => console.log(data.toString('utf8')))
+
+  // Not emitted
   response.on('end', () => console.log('End.'))
 })
 
